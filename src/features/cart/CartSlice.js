@@ -37,7 +37,7 @@ export const productSlice = createSlice({
 });
 
 export const { increment } = productSlice.actions;
-
-export const selectCount = (state) => state.counter.value;
+// ? sign laga diye ho sakta hai starting me usko state.counter k andar value naa mile to ? lagane se agar value nahi hai to error nahi aega
+export const selectCount = (state) => state?.counter?.value;
 
 export default productSlice.reducer;
