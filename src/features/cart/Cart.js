@@ -6,7 +6,7 @@ import {
   increment,
   incrementAsync,
   selectCount,
-} from './CartSlice';
+} from './CartSlice'; 
 
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -14,7 +14,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 const products = [
   {
     id: 1,
-    name: 'Throwback Hip Bag',
+    name: 'Throwback Hip bag',
     href: '#',
     color: 'Salmon',
     price: '$90.00',

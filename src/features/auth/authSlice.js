@@ -38,6 +38,6 @@ export const productSlice = createSlice({
 
 export const { increment } = productSlice.actions;
 
-export const selectCount = (state) => state.counter.value;
+
 
 export default productSlice.reducer;
