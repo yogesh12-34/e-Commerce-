@@ -1,14 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount } from './CartAPI';
+import { addToCart,fetchItemsByUserId } from './CartAPI';
 
 const initialState = {
-  value: 0,
-  status: 'idle',
+  status: `idle`,
+  items: [],
 };
-export const incrementAsync = createAsyncThunk(
-  'counter/fetchCount',
-  async (amount) => {
-    const response = await fetchCount(amount);
+export const addToCartAsync = createAsyncThunk(
+  'cart/addToCart',
+  async (item) => {
+    const response = await addToCart(item);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+export const fetchItemsByUserIdAsync = createAsyncThunk(
+  'cart/fetchItemsByUserIdAsync',
+  async (userId) => {
+    const response = await fetchItemsByUserId(userId);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -26,18 +34,25 @@ export const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(incrementAsync.pending, (state) => {
+      .addCase(addToCartAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(incrementAsync.fulfilled, (state, action) => {
+      .addCase(addToCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value += action.payload;
+        state.items.push(action.payload);
+      })
+      .addCase(fetchItemsByUserIdAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchItemsByUserIdAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.items=(action.payload);
       });
   },
 });
 
 export const { increment } = productSlice.actions;
 // ? sign laga diye ho sakta hai starting me usko state.counter k andar value naa mile to ? lagane se agar value nahi hai to error nahi aega
-export const selectCount = (state) => state?.counter?.value;
+export const selectItems = (state) => state.cart.items;
 
 export default productSlice.reducer;

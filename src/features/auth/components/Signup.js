@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from "react-hook-form"
-import {
-  
-  increment,
-  incrementAsync,
-  
-} from '../authSlice';
+import { selectLoggedInUser,createUserAsync } from '../authSlice';
+import { Navigate } from 'react-router-dom';
+ import { useForm } from "react-hook-form"
 import { Link } from 'react-router-dom';
 
 
 
 export default function Signup() {
  const dispatch = useDispatch();
+ const user =useSelector(selectLoggedInUser);
  const {
   register,
   handleSubmit,
   watch,
-  formState: { errors }} = useForm();
+  formState: { errors },} = useForm();
+  
   console.log(errors)
   return (
     <div>
       <div >
       <>
+      {user &&<Navigate to="/" replace={true}></Navigate>}
     
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div  className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -37,7 +36,8 @@ export default function Signup() {
         </div>
 
         <div  className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form  noValidation className="space-y-6" onSubmit={handleSubmit((data)=>{
+          <form  noValidate className="space-y-6" onSubmit={handleSubmit((data)=>{
+            dispatch(createUserAsync({email:data.email,password:data.password}))
             console.log(data)
           })}>
             <div>
