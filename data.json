@@ -2387,7 +2387,7 @@
       "images": [
         "https://i.dummyjson.com/data/products/3/1.jpg"
       ],
-      "quantity": 1,
+      "quantity": 3,
       "user": 2
     },
     {
@@ -2467,7 +2467,7 @@
         "https://i.dummyjson.com/data/products/5/2.jpg",
         "https://i.dummyjson.com/data/products/5/3.jpg"
       ],
-      "quantity": 1,
+      "quantity": 2,
       "user": 2
     },
     {

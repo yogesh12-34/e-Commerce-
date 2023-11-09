@@ -2,7 +2,7 @@ import React, { useState,Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { UseSelector } from 'react-redux/es/hooks/useSelector';
-import { selectItems, updateCartAsync } from './CartSlice';
+import { deleteItemFromCartAsync, selectItems, updateCartAsync } from './CartSlice';
 
 
 import { Dialog, Transition } from '@headlessui/react'
@@ -20,6 +20,9 @@ export default function Cart() {
   ((total,item) =>item.quantity+total,0)
   const handleQuantity=(e,item)=>{
    dispatch (updateCartAsync({...item, quantity: +e.target.value}))
+  }
+  const handleRemove=(e,id)=>{
+    dispatch(deleteItemFromCartAsync(id))
   }
 
   return (
@@ -59,15 +62,16 @@ export default function Cart() {
                 <select onChange={(e)=>handleQuantity(e,item)} value={item.quantity}>
                   <option value="1">1</option>
                   <option value="2">2</option>
-                  <option value="2">3</option>
-                  <option value="2">4</option>
-                  <option value="2">5</option>
-                  <option value="2">6</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
                 </select>
                 </div>
 
                 <div className="flex">
                   <button
+                  onClick={e=>handleRemove(e,item.id)}
                     type="button"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
