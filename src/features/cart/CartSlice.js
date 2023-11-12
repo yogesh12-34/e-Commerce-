@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addToCart,fetchItemsByUserId,updateCart } from './CartAPI';
+import { addToCart,fetchItemsByUserId,updateCart,deleteItemFromCart } from './CartAPI';
 
 const initialState = {
   status: `idle`,
@@ -32,7 +32,7 @@ export const updateCartAsync = createAsyncThunk(
 export const deleteItemFromCartAsync = createAsyncThunk(
   'cart/deleteItemFromCartAsync',
   async (itemId) => {
-    const response = await deleteItemFromCartAsync(itemId);
+    const response = await deleteItemFromCart(itemId);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }

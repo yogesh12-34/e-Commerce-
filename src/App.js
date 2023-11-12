@@ -10,6 +10,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import { useEffect } from 'react';
 
 
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -20,6 +21,9 @@ import Protected from './features/auth/components/protected';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchItemsByUserIdAsync } from './features/cart/CartSlice';
 import { selectLoggedInUser } from './features/auth/authSlice';
+import PageNotFound from './pages/404';
+import OrderSuccessPaage from './pages/orderSuccessPage';
+
 
 
 const router = createBrowserRouter([
@@ -48,6 +52,17 @@ const router = createBrowserRouter([
     path: "/Product-Detail/:id",
     element:<Protected><ProductDetailPage></ProductDetailPage></Protected>
   },
+  {
+    path: `/order-success/:id`,
+    element:(
+    <OrderSuccessPaage></OrderSuccessPaage>)
+  },
+  {
+    path: "*",
+    element:(
+    <PageNotFound></PageNotFound>)
+  },
+ 
 ]);
 
 function App() {
