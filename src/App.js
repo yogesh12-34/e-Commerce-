@@ -58,6 +58,11 @@ const router = createBrowserRouter([
     <OrderSuccessPaage></OrderSuccessPaage>)
   },
   {
+    path: `/orders`,
+    element:(
+    <userOrders></userOrders>)
+  },
+  {
     path: "*",
     element:(
     <PageNotFound></PageNotFound>)

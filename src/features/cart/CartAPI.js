@@ -49,7 +49,7 @@ export  function resetCart(userId) {
 
  const response = await fetchItemsByUserId(userId)
  const items = response.data;
- for (let item in items){
+ for (let item of items){
  await deleteItemFromCart(item.Id)
  }
  resolve({status:`success`})
