@@ -19,4 +19,4 @@ function PageNotFound(){
       </main>
     )
 }
-export default PageNotFound;
+export default PageNotFound;  
