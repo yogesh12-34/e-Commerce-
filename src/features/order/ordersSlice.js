@@ -15,14 +15,14 @@ export const createOrderAsync = createAsyncThunk(
   }
 );
 
-export const productSlice = createSlice({
+export const orderSlice = createSlice({
   name: 'order',
   initialState,
 
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
+     resetOrder:(state)=>{
+      state.currentOrder=null;
+     }
     
   },
   extraReducers: (builder) => {
@@ -38,8 +38,8 @@ export const productSlice = createSlice({
   },
 });
 
-export const { increment } = productSlice.actions;
+export const { resetOrder } = orderSlice.actions;
 
 export const selectCurrentOrder = (state) => state.order.currentOrder;
 
-export default productSlice.reducer;
+export default orderSlice.reducer;
