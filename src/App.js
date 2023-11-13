@@ -8,6 +8,7 @@ import CartPage from './pages/CartPage';
 import Checkout from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
 import { useEffect } from 'react';
+import UserOrders from './features/user/components/userOrder';
 
 
 
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
   {
     path: `/orders`,
     element:(
-    <userOrders></userOrders>)
+    <UserOrders></UserOrders>)
   },
   {
     path: "*",

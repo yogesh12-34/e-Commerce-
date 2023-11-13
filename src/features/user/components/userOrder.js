@@ -4,7 +4,7 @@ import { fetchLoggedInUserOrdersAsync, selectUserOrders } from '../UserSlice';
 import { selectLoggedInUser } from '../../auth/authSlice';
 
 
-export default function userOrders() {
+export default function UserOrders() {
  const dispatch = useDispatch();
  const user = useSelector(selectLoggedInUser)
  const orders= useSelector(selectUserOrders)
@@ -13,9 +13,10 @@ export default function userOrders() {
    },[])
   return (
     <div>
-    {orders.map((order)=>{
+    {orders.map((order)=> (
       <div>{order.id}</div>
-    })}
+    
+    ))}
     </div>
   );
 }
