@@ -5,8 +5,9 @@ import { UseSelector } from 'react-redux/es/hooks/useSelector';
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from '../features/cart/CartSlice';
 import { Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
-import { selectLoggedInUser, updateUserAsync } from '../features/auth/authSlice';
+import {  updateUserAsync } from '../features/auth/authSlice';
 import { createOrderAsync, selectCurrentOrder, } from '../features/order/ordersSlice';
+import { selectUserInfo } from '../features/user/UserSlice';
 
 
  
@@ -19,7 +20,7 @@ function Checkout(){
     reset,
     watch,
     formState: { errors },} = useForm();
-    const user =useSelector(selectLoggedInUser)
+    const user =useSelector(selectUserInfo)
     const currentOrder=useSelector(selectCurrentOrder);
 
   const [open, setOpen] = useState(true)
