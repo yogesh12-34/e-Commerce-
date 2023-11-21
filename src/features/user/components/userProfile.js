@@ -36,7 +36,7 @@ export default function UserProfile() {
 
   return (
     <div>
-      < >
+      <>
       <div>
     <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8"> 
     
@@ -56,7 +56,7 @@ export default function UserProfile() {
   {selectedEditIndex=== index ?<form className="bg-white px-5 py-12 mt-12" noValidate onSubmit={handleSubmit((data)=>{
             handleEdit(data,index)
             reset();
-          })}>:null}
+          })}>
           
         <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
@@ -237,13 +237,13 @@ export default function UserProfile() {
         </div>
         </div>
   </form>
+  : null }
 </div>
 ))};
 </div>
 </div>
-        
       </div>
-    </div>
+    </>
     </div>
   );
 }
