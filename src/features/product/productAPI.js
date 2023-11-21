@@ -19,7 +19,7 @@ export function fetchProductsByFilters(filter,sort,pagination) {
   let queryString=``;
   for(let Key in filter){
     const categoryValues=filter[Key];
-    if(categoryValues.length){
+    if(categoryValues.length){ 
       const lastCategoryValue=categoryValues[categoryValues.length-1]
       queryString+=`${Key}=${lastCategoryValue}&`
     }
