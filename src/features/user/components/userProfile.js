@@ -197,8 +197,12 @@ export default function UserProfile() {
           <p className="mt-1 text-sm leading-6 text-gray-600">
            Choose from Existing addresses
           </p>
-          <ul role="list" ></ul>
-  <div  className="flex justify-between gap-x-6 py-5 px-5 border-solid border-2 border-gray-200">
+          <ul role="list" ></ul> 
+        </div>
+        </div>
+  </form>
+  : null }
+    <div  className="flex justify-between gap-x-6 py-5 px-5 border-solid border-2 border-gray-200">
           <div className="flex min-w-0 gap-x-4">
          
             <div className="min-w-0 flex-auto">
@@ -230,14 +234,8 @@ export default function UserProfile() {
                     Remove
                   </button>
            
-          </div>
-          
-         
-        </div>   
-        </div>
-        </div>
-  </form>
-  : null }
+          </div>  
+        </div>  
 </div>
 ))};
 </div>
