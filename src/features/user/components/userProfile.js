@@ -222,6 +222,7 @@ export default function UserProfile() {
          
         </div>   
         </div>
+        </div>
   </form>
 </div>
 ))}
