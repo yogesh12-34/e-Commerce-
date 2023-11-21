@@ -86,16 +86,14 @@ export default function UserProfile() {
          
         </div>   
         </div>
-        ))}
-
- 
-  
-  
+  </form>
 </div>
+))}
 </div>
 </div>
         
       </div>
+    </div>
     </div>
   );
 }
