@@ -2408,6 +2408,13 @@
       "addresses": [],
       "role": "user",
       "id": 7
+    },
+    {
+      "email": "new@ac.in",
+      "password": "New@123456",
+      "addresses": [],
+      "role": "user",
+      "id": 8
     }
   ],
   "cart": [
