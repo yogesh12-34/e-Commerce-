@@ -32,4 +32,10 @@ export function checkUser(loginInfo) {
 }
     );
 }
-
+export function signOut(userData) {
+  return new Promise(async (resolve) =>{
+  
+    resolve({data: `success`})
+}
+    );
+}
