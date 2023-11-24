@@ -6,6 +6,7 @@ return (
       <NavBar>
         <ProductList></ProductList>
       </NavBar>
+    
     </div>
   );
 }

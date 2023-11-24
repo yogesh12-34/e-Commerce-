@@ -205,7 +205,14 @@ export default function AdminProductList() {
                  filters={filters}></DesktopFilter>
 
                   {/* Product grid */}
+                  
                   <div className="lg:col-span-3">
+                  <div>
+                  <Link  
+                  to="/admin/product-form"
+                  className="rounded-md mx-10 my-5 bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  Add New  Product</Link>
+                </div>
                    <ProductGrid products={products}></ProductGrid>
                   </div>
                   {/* product grid end */}
@@ -480,6 +487,7 @@ function ProductGrid({products}){
     <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {products.map((product) => (
+          <div>
           <Link to={`/product-detail/${product.id}`}key={product.id}>
             <div
            
@@ -522,9 +530,17 @@ function ProductGrid({products}){
                     ${product.price}
                   </p>
                 </div>
-              </div>
+                 </div> 
+              
+                
             </div>
+           
           </Link>
+          <div>
+                  <button  className="rounded-md my-5 bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  Edit Product</button>
+                </div>
+          </div>
         ))}
       </div>
     </div>

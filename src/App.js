@@ -34,6 +34,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import AdminProductDetailPage from './pages/AdminProductDetailPage';
 import ProtectedAdmin from './features/auth/components/ProtectedAdmin';
 import AdminHome from './pages/AdminHome';
+import AdminProductFormPage from './pages/AdminProductFormPage';
 
 
 
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/Product-Detail/:id",
     element:<ProtectedAdmin><AdminProductDetailPage></AdminProductDetailPage></ProtectedAdmin>
+  },
+  {
+    path: "/admin/Product-form",
+    element:<ProtectedAdmin><AdminProductFormPage></AdminProductFormPage></ProtectedAdmin>
   },
   {
     path: `/order-success/:id`,
@@ -117,7 +122,7 @@ function App() {
   return (
     <div >
      <RouterProvider router={router} />
-      
+     {/* / ///link must be the inside provider */}
      
     </div>
   );
