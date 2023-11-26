@@ -1,28 +1,77 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useSelector, useDispatch} from "react-redux";
-import { createProductAsync, selectBrands } from '../../product/productSlice';
+import { clearSelectedProduct, createProductAsync, fetchProductByIdAsync, selectBrands, updateProductAsync } from '../../product/productSlice';
 import { selectCategories } from '../../product/productSlice';
 import { useForm } from "react-hook-form"
+import { useParams } from 'react-router-dom';
+import { fetchProductById } from '../../product/productAPI';
+import { selectProductById } from '../../product/productSlice';
+import { useEffect } from 'react';
 function ProductForm(){
     const {
         register,
         handleSubmit,
-        watch,
+        setValue,
+        reset,
         formState: { errors },} = useForm();
     const brands = useSelector(selectBrands);
     const categories = useSelector(selectCategories);
     const dispatch =useDispatch()
+    const params =useParams();
+    const selectedProduct = useSelector(selectProductById)
+    useEffect(()=>{
+      if(params.id){
+        dispatch(fetchProductByIdAsync(params.id))
+        }else{
+          dispatch(clearSelectedProduct());
+        }
+     },[params.id,dispatch])
+     useEffect(()=>{
+      if(selectedProduct && params.id){
+        setValue(`title`,selectedProduct.title);
+        setValue(`description`,selectedProduct.description);
+        setValue(`price`,selectedProduct.price);
+        setValue(`discountPercentage`,selectedProduct.discountPercentage);
+        setValue(`thumbnail`,selectedProduct.thumbnail);
+        setValue(`stock`,selectedProduct.stock);
+        setValue(`image1`,selectedProduct.images[0]);
+        setValue(`image2`,selectedProduct.images[1]);
+        setValue(`image3`,selectedProduct.images[2]);
+        setValue(`brand`,selectedProduct.brand);
+        setValue(`category`,selectedProduct.category);
+        
+        
+      }
+
+     },[selectedProduct,params.id,setValue]);
+      const handleDelete=()=>{
+      const product ={...selectedProduct}
+      product.deleted =true;
+      dispatch(updateProductAsync(product))
+     }
     return( <form noValidate
         className="space-y-6" onSubmit={handleSubmit((data)=>{
           const product={...data}
-          product.images=[product.image1,product.image2,product.image3,product.thumbnail]
+          product.images=[product.image1,product.image2,product.image3,product.thumbnail];
           product.rating=0;
           delete product[`image1`]
           delete product[`image2`]
           delete product[`image3`]
+          product.price=+product.price
+          product.discountPercentage=+product.discountPercentage
+          product.stock=+product.stock
           console.log(product)
+          if(params.id){
+            product.id=params.id;
+            product.rating=selectedProduct.rating||0;
+            dispatch(updateProductAsync(product));
+            reset()
+          }else{
+            dispatch(createProductAsync(product));
+            reset()
+          }
 
-         dispatch(createProductAsync(product))
+         
        })}>
         <div className="space-y-12 bg-white p-12" >
           <div className="border-b border-gray-900/10 pb-12">
@@ -352,6 +401,12 @@ function ProductForm(){
           <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
             Cancel
           </button>
+          {selectedProduct&&<button
+            onClick={handleDelete}
+            className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Delete
+          </button>}
           <button
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
