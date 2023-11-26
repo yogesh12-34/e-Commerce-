@@ -115,7 +115,7 @@ function AdminOrders() {
                 </tr>
               </thead>
               <tbody className="text-gray-600 text-sm font-light">
-                {orders.map((order) => (
+                {orders?.map((order) => (
                   <tr className="border-b border-gray-200 hover:bg-gray-100">
                     <td className="py-3 px-6 text-left whitespace-nowrap">
                       <div className="flex items-center">
@@ -147,13 +147,13 @@ function AdminOrders() {
                     <td className="py-3 px-6 text-center">
                       <div className="">
                         <div>
-                          <strong>{order.selectedAddress.name}</strong>,
+                          <strong>{order.selectedAddress?.name}</strong>,
                         </div>
-                        <div>{order.selectedAddress.street},</div>
-                        <div>{order.selectedAddress.city}, </div>
-                        <div>{order.selectedAddress.state}, </div>
-                        <div>{order.selectedAddress.pinCode}, </div>
-                        <div>{order.selectedAddress.phone}, </div>
+                        <div>{order.selectedAddress?.street},</div>
+                        <div>{order.selectedAddress?.city}, </div>
+                        <div>{order.selectedAddress?.state}, </div>
+                        <div>{order.selectedAddress?.pinCode}, </div>
+                        <div>{order.selectedAddress?.phone}, </div>
                       </div>
                     </td>
                     <td className="py-3 px-6 text-center">

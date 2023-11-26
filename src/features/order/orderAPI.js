@@ -34,7 +34,7 @@ export function fetchAllOrders({sort,pagination}) {
     const response = await fetch('http://localhost:8080/orders?'+queryString)
     const data  = await response.json()
     const totalOrders = await response.headers.get(`X-Total-Count`)
-    resolve({data:{products:data,totalOrders:+totalOrders}})
+    resolve({data:{orders:data,totalOrders:+totalOrders}})
 }
     );
 }
