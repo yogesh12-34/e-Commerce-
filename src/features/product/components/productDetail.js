@@ -5,9 +5,10 @@ import { RadioGroup } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductByIdAsync, selectProductById } from '../productSlice';
 import { useParams } from 'react-router-dom';
-import { addToCartAsync, selectItems } from '../../cart/CartSlice';
+import { addToCartAsync, } from '../../cart/CartSlice';
 import { selectLoggedInUser } from '../../auth/authSlice';
 import { discountedPrice } from '../../../app/constants';
+import { selectItems } from '../../cart/CartSlice';
 
 
 const colors =[
@@ -48,9 +49,9 @@ export default function ProductDetail() {
 
   const handleCart=(e)=>{
     e.preventDefault();
-    if(items.findIndex(item=>item.productId===product.id)<0){
-      const newItem={...product, productId:product.id,quantity:1,user:user.id}
-      delete newItem[`id`];
+    if(items.findIndex(item=>item.product===product.id)<0){
+      const newItem={ product:product.id,quantity:1,user:user.id}
+      
      dispatch(addToCartAsync(newItem))
     }else{
       console.log(`alredy addded`)
