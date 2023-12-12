@@ -5,7 +5,7 @@ import { UseSelector } from 'react-redux/es/hooks/useSelector';
 import { deleteItemFromCartAsync, updateCartAsync } from '../features/cart/CartSlice';
 import { Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
-import {  updateUserAsync } from '../features/auth/authSlice';
+import {  updateUserAsync } from '../features//user/UserSlice';
 import { createOrderAsync, selectCurrentOrder, } from '../features/order/ordersSlice';
 import { selectUserInfo } from '../features/user/UserSlice';
 import { discountedPrice } from '../app/constants';
@@ -47,7 +47,7 @@ function Checkout(){
     setPaymentMethod(e.target.value);
   }
   const handleOrder=(e)=>{
-    const order ={items,totalAmount,totalItems,user,paymentMethod,selectedAddress,status:`pending`}
+    const order ={items,totalAmount,totalItems,user:user.id,paymentMethod,selectedAddress,status:`pending`}
     dispatch(createOrderAsync(order))
    //TODO:redirect to order-success page
    //TODO: Clear cart after order
