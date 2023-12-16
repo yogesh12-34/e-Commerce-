@@ -5,7 +5,7 @@ import { updateUser } from '../user/userAPI';
 import { signOut } from './authAPI';
 
 const initialState = {
-  loggedInUser: null,
+  loggedInUserToken: null,
   status: 'idle',
   error:null
 };
@@ -58,14 +58,14 @@ export const productSlice = createSlice({
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = action.payload;
+        state.loggedInUserToken = action.payload;
       })
       .addCase(checkUserAsync.pending, (state) => {
-        state.loggedInUser = 'loading';
+        state.loggedInUserToken = 'loading';
       })
       .addCase(checkUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = action.payload;
+        state.loggedInUserToken = action.payload;
       })
       .addCase(checkUserAsync.rejected, (state, action) => {
         state.status = 'idle';
@@ -77,14 +77,14 @@ export const productSlice = createSlice({
       })
       .addCase(signOutAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = null;
+        state.loggedInUserToken = null;
       });
   },
 });
 
 export const { increment } = productSlice.actions;
 
-export const selectLoggedInUser=(state)=>state.auth.loggedInUser;
+export const selectloggedInUser=(state)=>state.auth.loggedInUserToken;
 
 export const selectError=(state)=>state.auth.error;
 export default productSlice.reducer;

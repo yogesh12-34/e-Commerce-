@@ -200,7 +200,7 @@ function Checkout(){
            Choose from Existing addresses
           </p>
           <ul role="list" >
-      {user.addresses.map((address,index) => (
+      {user.addresses?.map((address,index) => (
         <li key={index} className="flex justify-between gap-x-6 py-5 px-5 border-solid border-2 border-gray-200">
           <div className="flex min-w-0 gap-x-4">
           <input    onChange={handleAddress}

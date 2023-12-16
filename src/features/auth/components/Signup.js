@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectLoggedInUser,createUserAsync } from '../authSlice';
+import { createUserAsync } from '../authSlice';
+import { selectloggedInUser } from '../authSlice';
 import { Navigate } from 'react-router-dom';
  import { useForm } from "react-hook-form"
 import { Link } from 'react-router-dom';
@@ -9,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 export default function Signup() {
  const dispatch = useDispatch();
- const user =useSelector(selectLoggedInUser);
+ const user =useSelector(selectloggedInUser);
  const {
   register,
   handleSubmit,
@@ -37,7 +38,7 @@ export default function Signup() {
 
         <div  className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form  noValidate className="space-y-6" onSubmit={handleSubmit((data)=>{
-            dispatch(createUserAsync({email:data.email,password:data.password,addresses:[],role:`user`}))
+            dispatch(createUserAsync({email:data.email,password:data.password,addresses:[],role:`user`,orders:[]}))
             console.log(data)
           })}>
             <div>
