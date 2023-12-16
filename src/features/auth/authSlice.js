@@ -61,7 +61,7 @@ export const productSlice = createSlice({
         state.loggedInUserToken = action.payload;
       })
       .addCase(checkUserAsync.pending, (state) => {
-        state.loggedInUserToken = 'loading';
+        state.status = 'loading';
       })
       .addCase(checkUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
