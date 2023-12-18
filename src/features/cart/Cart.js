@@ -2,7 +2,7 @@ import React, { useState,Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { UseSelector } from 'react-redux/es/hooks/useSelector';
-import { deleteItemFromCartAsync, selectItems, updateCartAsync } from './CartSlice';
+import { deleteItemFromCartAsync, selectCartLoaded, selectItems, updateCartAsync } from './CartSlice';
 import { Navigate } from 'react-router-dom';
 
 
@@ -17,6 +17,7 @@ export default function Cart() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true)
   const items = useSelector(selectItems)
+  const cartLoaded= useSelector(selectCartLoaded) 
   const totalAmount= items.reduce((amount,item) => discountedPrice(item.product)*item.quantity+amount,0)
   const totalItems=items.reduce
   ((total,item) =>item.quantity+total,0)
@@ -29,7 +30,7 @@ export default function Cart() {
 
   return (
     <> 
-       {!items.length && <Navigate to="/" replace={true}></Navigate>}
+       {!items.length && cartLoaded &&<Navigate to="/" replace={true}></Navigate>}
     <div>
     <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8"> 
      

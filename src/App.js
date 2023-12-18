@@ -21,7 +21,7 @@ import {
 import Protected from './features/auth/components/protected';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchItemsByUserIdAsync } from './features/cart/CartSlice';
-import { selectloggedInUser } from './features/auth/authSlice';
+import { checkAuthAsync, selectUserChecked, selectloggedInUser } from './features/auth/authSlice';
 import PageNotFound from './pages/404';
 import OrderSuccessPaage from './pages/orderSuccessPage';
 import UserOrdersPage from './pages/UserOrderPage';
@@ -36,6 +36,7 @@ import ProtectedAdmin from './features/auth/components/ProtectedAdmin';
 import AdminHome from './pages/AdminHome';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
+import StripeCheckout from './pages/StripeCheckout';
 
 
 
@@ -101,6 +102,14 @@ const router = createBrowserRouter([
     <UserProfilePage></UserProfilePage>)
   },
   {
+    path: `/stripe-checkout/`,
+    element:(
+      <Protected>
+        <StripeCheckout></StripeCheckout>
+      </Protected>
+   )
+  },
+  {
     path: `/logout`,
     element:(
     <Logout></Logout>)
@@ -121,7 +130,13 @@ const router = createBrowserRouter([
 function App() {
   const dispatch= useDispatch()
   const user = useSelector(selectloggedInUser)
+  const userChecked=useSelector(selectUserChecked)
+useEffect(()=>{
+  dispatch(checkAuthAsync())
+},[])
+
   useEffect(()=>{
+   
     if(user){
       dispatch(fetchItemsByUserIdAsync())
       dispatch(fetchLoggedInUserAsync())
@@ -130,7 +145,7 @@ function App() {
   },[dispatch,user])
   return (
     <div >
-     <RouterProvider router={router} />
+     {userChecked &&<RouterProvider router={router} />}
      {/* / ///link must be the inside provider */}
      
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { checkUserAsync, selectError, selectLoggedInUser } from '../authSlice';
+import { loginUserAsync, selectError, selectLoggedInUser } from '../authSlice';
 import { useForm } from "react-hook-form"
 import { Link, Navigate } from 'react-router-dom';
 
