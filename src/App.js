@@ -98,8 +98,8 @@ const router = createBrowserRouter([
   },
   {
     path: `/profile`,
-    element:(
-    <UserProfilePage></UserProfilePage>)
+    element:(<Protected> <UserProfilePage></UserProfilePage></Protected>
+   )
   },
   {
     path: `/stripe-checkout/`,

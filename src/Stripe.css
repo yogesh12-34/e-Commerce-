@@ -1,7 +1,5 @@
 
-  
-
-  
+ 
   .Stripe form {
     width: 30vw;
     min-width: 500px;
@@ -42,7 +40,7 @@
     width: 100%;
   }
   
- .Stripe button:hover {
+ .Stripe  button:hover {
     filter: contrast(115%);
   }
   

@@ -24,6 +24,9 @@ export default function StripeCheckout() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ items: currentOrder.items }),
+      meta:{
+        order_id:currentOrder.id
+      }
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
