@@ -129,7 +129,7 @@ function AdminOrders() {
                     <td className="py-3 px-6 text-left whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="mr-2"></div>
-                        <span className="font-medium">key={order.id}</span>
+                        <span className="font-medium">{order.id}</span>
                       </div>
                     </td>
                     <td className="py-3 px-6 text-left">
@@ -144,7 +144,7 @@ function AdminOrders() {
                           </div>
                           <span>
                             {item.product.title} - #{item.quantity} - $
-                            {discountedPrice(item.product)}
+                            {item.product.discountedPrice}
                           </span>
                         </div>
                       ))}
