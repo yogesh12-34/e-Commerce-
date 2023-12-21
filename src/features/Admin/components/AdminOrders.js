@@ -103,7 +103,7 @@ function AdminOrders() {
                     className="py-3 px-6 text-left cursor-pointer"
                     onClick={(e) =>
                       handleSort({
-                        sort: 'totalAmount',
+                        sort: '',
                         order: sort?._order === 'asc' ? 'desc' : 'asc',
                       })
                     }
@@ -151,7 +151,8 @@ function AdminOrders() {
                     </td>
                     <td className="py-3 px-6 text-center">
                       <div className="flex items-center justify-center">
-                        ${order.totalAmount}
+                        ${order.totalAmount
+                      }
                       </div>
                     </td>
                     <td className="py-3 px-6 text-center">
