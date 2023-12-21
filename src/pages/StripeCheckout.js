@@ -7,6 +7,7 @@ import "../Stripe.css";
 import { useSelector } from "react-redux";
 import { selectCurrentOrder } from "../features/order/ordersSlice";
 
+
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is a public sample test API key.
